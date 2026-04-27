@@ -10,16 +10,16 @@ interface GlowCardProps {
   customSize?: boolean;
 }
 
-const glowColorMap: Record<string, { h: number; s: number }> = {
-  blue:   { h: 220, s: 90 },
-  purple: { h: 280, s: 90 },
-  green:  { h: 120, s: 80 },
-  red:    { h: 0,   s: 90 },
-  orange: { h: 30,  s: 90 },
-  gold:   { h: 45,  s: 85 },
+const glowColorMap = {
+  blue:   { base: 220, spread: 200 },
+  purple: { base: 280, spread: 300 },
+  green:  { base: 120, spread: 200 },
+  red:    { base: 0,   spread: 200 },
+  orange: { base: 30,  spread: 200 },
+  gold:   { base: 45,  spread: 60  },
 };
 
-const sizeMap: Record<string, string> = {
+const sizeMap = {
   sm: 'w-48 h-64',
   md: 'w-64 h-80',
   lg: 'w-80 h-96',
@@ -34,72 +34,75 @@ const GlowCard: React.FC<GlowCardProps> = ({
   height,
   customSize = false,
 }) => {
-  const wrapRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const wrap = wrapRef.current;
-    if (!wrap) return;
-
-    const onMove = (e: PointerEvent) => {
-      const rect = wrap.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      wrap.style.setProperty('--mx', `${x.toFixed(2)}%`);
-      wrap.style.setProperty('--my', `${y.toFixed(2)}%`);
-      wrap.style.setProperty('--opacity', '1');
+    const syncPointer = (e: PointerEvent) => {
+      const { clientX: x, clientY: y } = e;
+      if (cardRef.current) {
+        cardRef.current.style.setProperty('--x', x.toFixed(2));
+        cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
+        cardRef.current.style.setProperty('--y', y.toFixed(2));
+        cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
+      }
     };
-
-    const onLeave = () => {
-      wrap.style.setProperty('--opacity', '0');
-    };
-
-    wrap.addEventListener('pointermove', onMove);
-    wrap.addEventListener('pointerleave', onLeave);
-    return () => {
-      wrap.removeEventListener('pointermove', onMove);
-      wrap.removeEventListener('pointerleave', onLeave);
-    };
+    document.addEventListener('pointermove', syncPointer);
+    return () => document.removeEventListener('pointermove', syncPointer);
   }, []);
 
-  const { h, s } = glowColorMap[glowColor];
-  const sizeClass = customSize ? '' : sizeMap[size];
+  const { base, spread } = glowColorMap[glowColor];
 
-  const wrapStyle: React.CSSProperties & Record<string, string> = {
-    '--mx': '50%',
-    '--my': '50%',
-    '--opacity': '0',
-    background: `radial-gradient(
-      180px circle at var(--mx) var(--my),
-      hsl(${h} ${s}% 65% / calc(var(--opacity) * 0.9)) 0%,
-      hsl(${h} ${s}% 50% / calc(var(--opacity) * 0.5)) 30%,
-      transparent 70%
-    )`,
-    padding: '1.5px',
-    borderRadius: '16px',
-    position: 'relative',
-    transition: 'background 0.05s',
-  };
+  const getSizeClasses = () => (customSize ? '' : sizeMap[size]);
 
-  if (width !== undefined) wrapStyle['width'] = typeof width === 'number' ? `${width}px` : String(width);
-  if (height !== undefined) wrapStyle['height'] = typeof height === 'number' ? `${height}px` : String(height);
-
-  const innerStyle: React.CSSProperties = {
-    background: 'rgba(13, 13, 26, 0.85)',
-    borderRadius: '14.5px',
-    height: '100%',
-    backdropFilter: 'blur(8px)',
-    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
+  const getInlineStyles = (): React.CSSProperties & Record<string, string | number> => {
+    const s: React.CSSProperties & Record<string, string | number> = {
+      '--base': base,
+      '--spread': spread,
+      '--radius': '14',
+      '--border': '2',
+      '--backdrop': 'rgba(13, 13, 26, 0.75)',
+      '--backup-border': 'rgba(201,168,76,0.18)',
+      '--size': '240',
+      '--outer': '1',
+      '--border-size': 'calc(var(--border, 2) * 1px)',
+      '--spotlight-size': 'calc(var(--size, 150) * 1px)',
+      '--hue': 'calc(var(--base) + (var(--xp, 0) * var(--spread, 0)))',
+      backgroundImage: `radial-gradient(
+        var(--spotlight-size) var(--spotlight-size) at
+        calc(var(--x, 0) * 1px)
+        calc(var(--y, 0) * 1px),
+        hsl(var(--hue, 45) calc(var(--saturation, 85) * 1%) calc(var(--lightness, 65) * 1%) / var(--bg-spot-opacity, 0.12)), transparent
+      )`,
+      backgroundColor: 'var(--backdrop)',
+      backgroundSize: 'calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))',
+      backgroundPosition: '50% 50%',
+      backgroundAttachment: 'fixed',
+      border: 'var(--border-size) solid var(--backup-border)',
+      position: 'relative',
+      touchAction: 'none',
+    };
+    if (width !== undefined) s['width'] = typeof width === 'number' ? `${width}px` : width;
+    if (height !== undefined) s['height'] = typeof height === 'number' ? `${height}px` : height;
+    return s;
   };
 
   return (
     <div
-      ref={wrapRef}
-      style={wrapStyle}
-      className={`${sizeClass} ${customSize ? '' : 'aspect-[3/4]'} shadow-[0_8px_32px_rgba(0,0,0,0.5)] ${className}`}
+      ref={cardRef}
+      data-glow
+      style={getInlineStyles()}
+      className={`
+        ${getSizeClasses()}
+        ${!customSize ? 'aspect-[3/4]' : ''}
+        rounded-2xl relative grid grid-rows-[1fr_auto]
+        shadow-[0_1rem_2rem_-1rem_black]
+        p-5 gap-4 backdrop-blur-[6px]
+        ${className}
+      `}
     >
-      <div style={innerStyle} className="relative flex flex-col p-6 gap-4">
-        {children}
-      </div>
+      <div ref={innerRef} data-glow />
+      {children}
     </div>
   );
 };
