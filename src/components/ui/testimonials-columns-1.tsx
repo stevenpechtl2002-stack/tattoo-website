@@ -34,7 +34,7 @@ export const TestimonialsColumn = (props: {
                 key={i}
                 glowColor="gold"
                 customSize
-                className="w-full flex flex-col justify-between p-6 gap-0"
+                className="w-full flex flex-col justify-between"
               >
                 {/* Stars */}
                 <div className="flex gap-0.5 mb-4">

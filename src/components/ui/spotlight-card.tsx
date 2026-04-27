@@ -10,16 +10,16 @@ interface GlowCardProps {
   customSize?: boolean;
 }
 
-const glowColorMap = {
-  blue:   { base: 220, spread: 200 },
-  purple: { base: 280, spread: 300 },
-  green:  { base: 120, spread: 200 },
-  red:    { base: 0,   spread: 200 },
-  orange: { base: 30,  spread: 200 },
-  gold:   { base: 45,  spread: 120 },
+const glowColorMap: Record<string, { h: number; s: number }> = {
+  blue:   { h: 220, s: 90 },
+  purple: { h: 280, s: 90 },
+  green:  { h: 120, s: 80 },
+  red:    { h: 0,   s: 90 },
+  orange: { h: 30,  s: 90 },
+  gold:   { h: 45,  s: 85 },
 };
 
-const sizeMap = {
+const sizeMap: Record<string, string> = {
   sm: 'w-48 h-64',
   md: 'w-64 h-80',
   lg: 'w-80 h-96',
@@ -34,82 +34,72 @@ const GlowCard: React.FC<GlowCardProps> = ({
   height,
   customSize = false,
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
+    const wrap = wrapRef.current;
+    if (!wrap) return;
 
-    const handleMove = (e: PointerEvent) => {
-      const rect = card.getBoundingClientRect();
-      const lx = e.clientX - rect.left;
-      const ly = e.clientY - rect.top;
-      const xp = (lx / rect.width).toFixed(4);
-      card.style.setProperty('--lx', lx.toFixed(2));
-      card.style.setProperty('--ly', ly.toFixed(2));
-      card.style.setProperty('--xp', xp);
+    const onMove = (e: PointerEvent) => {
+      const rect = wrap.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      wrap.style.setProperty('--mx', `${x.toFixed(2)}%`);
+      wrap.style.setProperty('--my', `${y.toFixed(2)}%`);
+      wrap.style.setProperty('--opacity', '1');
     };
 
-    const handleLeave = () => {
-      card.style.setProperty('--lx', '-999');
-      card.style.setProperty('--ly', '-999');
+    const onLeave = () => {
+      wrap.style.setProperty('--opacity', '0');
     };
 
-    card.addEventListener('pointermove', handleMove);
-    card.addEventListener('pointerleave', handleLeave);
+    wrap.addEventListener('pointermove', onMove);
+    wrap.addEventListener('pointerleave', onLeave);
     return () => {
-      card.removeEventListener('pointermove', handleMove);
-      card.removeEventListener('pointerleave', handleLeave);
+      wrap.removeEventListener('pointermove', onMove);
+      wrap.removeEventListener('pointerleave', onLeave);
     };
   }, []);
 
-  const { base, spread } = glowColorMap[glowColor];
+  const { h, s } = glowColorMap[glowColor];
+  const sizeClass = customSize ? '' : sizeMap[size];
 
-  const getSizeClasses = () => {
-    if (customSize) return '';
-    return sizeMap[size];
+  const wrapStyle: React.CSSProperties & Record<string, string> = {
+    '--mx': '50%',
+    '--my': '50%',
+    '--opacity': '0',
+    background: `radial-gradient(
+      180px circle at var(--mx) var(--my),
+      hsl(${h} ${s}% 65% / calc(var(--opacity) * 0.9)) 0%,
+      hsl(${h} ${s}% 50% / calc(var(--opacity) * 0.5)) 30%,
+      transparent 70%
+    )`,
+    padding: '1.5px',
+    borderRadius: '16px',
+    position: 'relative',
+    transition: 'background 0.05s',
   };
 
-  const getInlineStyles = (): React.CSSProperties & Record<string, string | number> => {
-    const baseStyles: React.CSSProperties & Record<string, string | number> = {
-      '--base': base,
-      '--spread': spread,
-      '--backdrop': 'hsl(0 0% 10% / 0.6)',
-      '--backup-border': 'rgba(201,168,76,0.15)',
-      '--size': '280',
-      '--border-size': '1px',
-      '--spotlight-size': 'calc(var(--size, 280) * 1px)',
-      '--hue': `calc(${base} + (var(--xp, 0) * ${spread}))`,
-      backgroundImage: `radial-gradient(
-        var(--spotlight-size) var(--spotlight-size) at
-        calc(var(--lx, -999) * 1px)
-        calc(var(--ly, -999) * 1px),
-        hsl(var(--hue) 80% 65% / 0.10), transparent
-      )`,
-      backgroundColor: 'var(--backdrop)',
-      border: 'var(--border-size) solid var(--backup-border)',
-      position: 'relative',
-      touchAction: 'none',
-      overflow: 'hidden',
-    };
+  if (width !== undefined) wrapStyle['width'] = typeof width === 'number' ? `${width}px` : String(width);
+  if (height !== undefined) wrapStyle['height'] = typeof height === 'number' ? `${height}px` : String(height);
 
-    if (width !== undefined) {
-      baseStyles['width'] = typeof width === 'number' ? `${width}px` : width;
-    }
-    if (height !== undefined) {
-      baseStyles['height'] = typeof height === 'number' ? `${height}px` : height;
-    }
-
-    return baseStyles;
+  const innerStyle: React.CSSProperties = {
+    background: 'rgba(13, 13, 26, 0.85)',
+    borderRadius: '14.5px',
+    height: '100%',
+    backdropFilter: 'blur(8px)',
+    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
   };
 
   return (
     <div
-      ref={cardRef}
-      style={getInlineStyles()}
-      className={`${getSizeClasses()} rounded-2xl relative shadow-[0_1rem_2rem_-1rem_black] backdrop-blur-[5px] ${className}`}
+      ref={wrapRef}
+      style={wrapStyle}
+      className={`${sizeClass} ${customSize ? '' : 'aspect-[3/4]'} shadow-[0_8px_32px_rgba(0,0,0,0.5)] ${className}`}
     >
-      {children}
+      <div style={innerStyle} className="relative flex flex-col p-6 gap-4">
+        {children}
+      </div>
     </div>
   );
 };
