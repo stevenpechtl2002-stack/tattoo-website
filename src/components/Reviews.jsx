@@ -69,7 +69,7 @@ export default function Reviews() {
             <div className="rev-big">5.0</div>
             <div>
               <div className="rev-stars-big">★★★★★</div>
-              <div className="rev-count">847 Google-Bewertungen · Berlin</div>
+              <div className="rev-count">Google-Bewertungen · Pforzheim</div>
             </div>
           </div>
         </motion.div>

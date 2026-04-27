@@ -1,17 +1,15 @@
 import { motion } from 'framer-motion'
 
 const HOURS = [
-  { days: 'Di – Fr', time: '11:00 – 19:00' },
-  { days: 'Samstag', time: '10:00 – 17:00' },
-  { days: 'So / Mo', time: 'Geschlossen' },
+  { days: 'Montag – Samstag', time: '10:00 – 19:00' },
+  { days: 'Sonntag', time: 'Geschlossen' },
 ]
 
 function isOpen() {
   const now = new Date()
-  const day = now.getDay() // 0=Sun, 1=Mon, 2=Tue, 6=Sat
+  const day = now.getDay() // 0=Sun, 1=Mon … 6=Sat
   const hour = now.getHours() + now.getMinutes() / 60
-  if (day >= 2 && day <= 5) return hour >= 11 && hour < 19
-  if (day === 6) return hour >= 10 && hour < 17
+  if (day >= 1 && day <= 6) return hour >= 10 && hour < 19
   return false
 }
 
@@ -95,8 +93,8 @@ export default function Contact() {
 
             {/* Address label */}
             <div className="absolute bottom-4 left-4 glass px-4 py-2">
-              <p className="text-gold text-xs font-body">Harlekin Tattoo</p>
-              <p className="text-cream/60 text-xs font-body">Kunststraße 7, 10115 Berlin</p>
+              <p className="text-gold text-xs font-body">Harlekin Tattoo & Piercing</p>
+              <p className="text-cream/60 text-xs font-body">Wilhelm-Becker-Str. 15, 75179 Pforzheim</p>
             </div>
 
             {/* Open/closed indicator */}
@@ -116,10 +114,10 @@ export default function Contact() {
         {/* RIGHT — Contact cards + hours */}
         <div>
           <div className="grid grid-cols-2 gap-4 mb-6">
-            <ContactCard icon="📞" title="Telefon" value="030 987654" delay={0} />
+            <ContactCard icon="📞" title="Telefon" value="07231 / 8000652" delay={0} />
             <ContactCard icon="✉" title="E-Mail" value="info@harlekin-tattoo.de" delay={0.1} />
-            <ContactCard icon="📍" title="Adresse" value="Kunststraße 7, 10115 Berlin" delay={0.2} />
-            <ContactCard icon="◎" title="Instagram" value="@harlekin.tattoo" delay={0.3} />
+            <ContactCard icon="📍" title="Adresse" value="Wilhelm-Becker-Str. 15, 75179 Pforzheim" delay={0.2} />
+            <ContactCard icon="◎" title="Instagram" value="@harlekin_tattoo_pforzheim" delay={0.3} />
           </div>
 
           {/* Opening hours */}
@@ -152,11 +150,11 @@ export default function Contact() {
             transition={{ delay: 0.6 }}
           >
             <p className="font-display text-lg italic text-cream/30">
-              "Deine Haut. Unsere Kunst."
+              "We don't follow standards... WE SET THEM!"
             </p>
             <div className="flex justify-center gap-4 mt-4">
               <div className="w-8 h-px bg-gold/30" />
-              <span className="text-gold/30 text-xs">Harlekin Tattoo · Berlin 2024</span>
+              <span className="text-gold/30 text-xs">Harlekin Tattoo & Piercing · Pforzheim</span>
               <div className="w-8 h-px bg-gold/30" />
             </div>
           </motion.div>

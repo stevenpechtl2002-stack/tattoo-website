@@ -15,7 +15,7 @@ const STEPS = [
     question: (v) => `Schön, ${v.name}! Welchen Stil interessiert dich?`,
     field: 'style',
     type: 'choice',
-    choices: ['Realistisch', 'Blackwork', 'Old School', 'Watercolor', 'Cover Up', 'Lettering'],
+    choices: ['Black & Grey', 'Maori / Tribal', 'Asia / Japanese', 'Mehrfarbig', 'Cover Up', 'Piercing'],
   },
   {
     id: 2,

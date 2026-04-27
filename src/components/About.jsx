@@ -117,7 +117,7 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            Seit über 12 Jahren sind wir das führende Tattoo-Studio im Herzen Berlins. Unser Team aus 6 passionierten Künstlern verbindet traditionelles Handwerk mit zeitgemäßer Kunst.
+            Harlekin Tattoo & Piercing ist dein Studio in Pforzheim und dem Enzkreis — mit zeitnahen Terminen und fairen Preisen. Mehrfarbige und schwarz-weiße Tattoos, professionelles Piercing, Maori, Asia-Designs und mehr.
           </motion.p>
 
           <motion.p
@@ -127,7 +127,7 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            Jedes Tattoo erzählt eine Geschichte. Deine Geschichte.
+            We don't follow standards — WE SET THEM.
           </motion.p>
 
           <motion.button

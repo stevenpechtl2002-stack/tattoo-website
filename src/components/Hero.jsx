@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const TITLE = 'HARLEKIN'
-const SUBTITLE = 'Deine Haut. Unsere Kunst.'
+const SUBTITLE = "We don't follow standards... WE SET THEM!"
 
 const InkParticle = ({ style }) => (
   <motion.div
@@ -127,7 +127,7 @@ export default function Hero() {
           animate={{ opacity: phase === 'title' || phase === 'subtitle' || phase === 'done' ? 1 : 0 }}
           transition={{ duration: 0.6 }}
         >
-          Berlin · Tattoo Studio
+          Pforzheim · Tattoo & Piercing
         </motion.p>
 
         {/* Title letters */}
