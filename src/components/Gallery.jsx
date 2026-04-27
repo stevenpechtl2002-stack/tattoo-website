@@ -64,18 +64,11 @@ export default function Gallery() {
           </div>
         </motion.div>
 
-        {/* Scrolling rows */}
+        {/* Scrolling row */}
         <div className="g-carousel">
           <div className="g-track-wrap">
-            <div className="g-track">
-              {[...row1, ...row1].map((img, i) => (
-                <ImageCard key={i} {...img} />
-              ))}
-            </div>
-          </div>
-          <div className="g-track-wrap">
             <div className="g-track g-track-r">
-              {[...row2, ...row2].map((img, i) => (
+              {[...row1, ...row2, ...row1, ...row2].map((img, i) => (
                 <ImageCard key={i} {...img} />
               ))}
             </div>
@@ -134,10 +127,10 @@ export default function Gallery() {
           display: flex;
           gap: 1rem;
           width: max-content;
-          animation: gLeft 40s linear infinite;
+          animation: gRight 60s linear infinite;
         }
         .g-track-r {
-          animation: gRight 48s linear infinite;
+          animation: gRight 60s linear infinite;
         }
         .g-track:hover,
         .g-track-r:hover {
@@ -147,8 +140,8 @@ export default function Gallery() {
         @keyframes gRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
         .g-card {
           position: relative;
-          width: 280px;
-          height: 340px;
+          width: 240px;
+          height: 360px;
           flex-shrink: 0;
           border-radius: 14px;
           overflow: hidden;
@@ -196,11 +189,11 @@ export default function Gallery() {
         }
         @media (max-width: 1024px) {
           .g-head { padding: 0 2.5rem; }
-          .g-card { width: 240px; height: 290px; }
+          .g-card { width: 200px; height: 300px; }
         }
         @media (max-width: 640px) {
           .g-head { padding: 0 1.5rem; }
-          .g-card { width: 200px; height: 240px; }
+          .g-card { width: 160px; height: 240px; }
         }
       `}</style>
     </div>
