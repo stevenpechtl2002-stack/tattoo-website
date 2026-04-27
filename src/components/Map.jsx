@@ -149,7 +149,7 @@ export default function Map() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.4!2d8.7057!3d48.8944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479776b08e9de489%3A0x7e4b62b4da15c4b6!2sWilhelm-Becker-Stra%C3%9Fe%2015%2C%2075179%20Pforzheim!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde"
             width="100%"
             height="100%"
-            style={{ border: 0, filter: 'grayscale(1) invert(0.9) contrast(0.85)' }}
+            style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
