@@ -69,7 +69,7 @@ export default function Hero() {
       <motion.div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'url(https://lh3.googleusercontent.com/gps-cs-s/APNQkAFt9mggjgJU8Sb6ljS9doHZbr7R4vB2gg4DTkXcDheLmbcd_6XICthtqg5xmCGYpKnFeQsvb_oABuCkmGEtLRiYV72LduKTlJI_2UleWZ0jFTZu21d5kL04hyBpP2TVAB60ZpzkwCw_9Rnh=w1600-h1200-k-no)',
+          backgroundImage: 'url(https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=85)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.12,
@@ -173,11 +173,11 @@ export default function Hero() {
           animate={{ opacity: phase === 'done' ? 1 : 0, y: phase === 'done' ? 0 : 20 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <button className="btn-gold">
+          <button className="btn-gold" onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}>
             <span>Termin Buchen</span>
           </button>
-          <button className="btn-gold" style={{ background: 'transparent' }}>
-            <span>Galerie</span>
+          <button className="btn-gold" style={{ background: 'transparent' }} onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}>
+            <span>Galerie ansehen</span>
           </button>
         </motion.div>
 

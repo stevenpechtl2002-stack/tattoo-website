@@ -136,9 +136,34 @@ export default function About() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
+            onClick={() => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })}
           >
             <span>Unser Team</span>
           </motion.button>
+
+          {/* Trust cards */}
+          <motion.div
+            className="grid grid-cols-3 gap-4 mt-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+          >
+            {[
+              { value: '500+', label: 'Zufriedene Kunden', sub: 'jedes Jahr' },
+              { value: '10', label: 'Jahre Erfahrung', sub: 'in Pforzheim' },
+              { value: '4.9', label: 'Sterne', sub: 'Google Bewertungen' },
+            ].map((card) => (
+              <div
+                key={card.value}
+                className="border border-gold/15 p-4 text-center"
+              >
+                <div className="font-display text-3xl gold-shimmer font-black">{card.value}</div>
+                <p className="text-cream/60 text-xs font-body mt-1">{card.label}</p>
+                <p className="text-cream/30 text-[10px] font-body tracking-[1px]">{card.sub}</p>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
         {/* Stats row */}
