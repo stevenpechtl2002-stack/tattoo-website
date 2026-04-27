@@ -63,8 +63,8 @@ export default function About() {
         style={{ y: midY, willChange: 'transform' }}
       >
         <img
-          src="https://images.unsplash.com/photo-1590246814883-57c511e84693?w=800&q=80"
-          alt="Tattoo Artist"
+          src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAFt9mggjgJU8Sb6ljS9doHZbr7R4vB2gg4DTkXcDheLmbcd_6XICthtqg5xmCGYpKnFeQsvb_oABuCkmGEtLRiYV72LduKTlJI_2UleWZ0jFTZu21d5kL04hyBpP2TVAB60ZpzkwCw_9Rnh=w1200-h900-k-no"
+          alt="Harlekin Tattoo & Piercing Studio Pforzheim"
           className="w-full h-full object-cover"
           style={{ filter: 'grayscale(0.3) contrast(1.1)' }}
         />

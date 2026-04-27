@@ -69,7 +69,7 @@ export default function Hero() {
       <motion.div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=1600&q=80)',
+          backgroundImage: 'url(https://lh3.googleusercontent.com/gps-cs-s/APNQkAFt9mggjgJU8Sb6ljS9doHZbr7R4vB2gg4DTkXcDheLmbcd_6XICthtqg5xmCGYpKnFeQsvb_oABuCkmGEtLRiYV72LduKTlJI_2UleWZ0jFTZu21d5kL04hyBpP2TVAB60ZpzkwCw_9Rnh=w1600-h1200-k-no)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.12,
