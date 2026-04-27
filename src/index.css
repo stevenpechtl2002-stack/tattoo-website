@@ -120,16 +120,9 @@ body {
   50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
 }
 
-/* Horizontal scroll container */
-.horizontal-track {
-  display: flex;
-  height: 100vh;
-}
-
 .panel {
-  min-width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
+  width: 100%;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
 }
