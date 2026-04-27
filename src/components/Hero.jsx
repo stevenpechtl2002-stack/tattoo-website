@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MeshGradient } from '@paper-design/shaders-react'
 
 const TITLE = 'HARLEKIN'
 const SUBTITLE = "We don't follow standards... WE SET THEM!"
@@ -64,20 +63,9 @@ export default function Hero() {
     <div
       ref={heroRef}
       className="panel relative flex items-center justify-center overflow-hidden"
+      style={{ background: 'transparent' }}
     >
 
-      {/* MeshGradient background */}
-      <MeshGradient
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-        colors={['#080808', '#c9a84c', '#3d2a00', '#080808']}
-        speed={0.3}
-      />
-
-      {/* Subtle dark overlay so text stays readable */}
-      <div
-        className="absolute inset-0"
-        style={{ background: 'rgba(8,8,8,0.55)' }}
-      />
 
       {/* Floating ink particles */}
       {particles.map((p, i) => (
