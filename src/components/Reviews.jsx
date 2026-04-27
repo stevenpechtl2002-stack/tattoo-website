@@ -1,70 +1,42 @@
 import { motion } from 'framer-motion'
-import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1'
 
-const testimonials = [
-  {
-    text: 'Absolut beeindruckend! Das Team hat meine Vision perfekt umgesetzt. Das Realistik-Portrait meiner Katze sieht atemberaubend aus.',
-    image: 'https://randomuser.me/api/portraits/women/1.jpg',
-    name: 'Sarah K.',
-    role: 'Realistik Portrait',
-  },
-  {
-    text: 'Professioneller geht es nicht. Von der Beratung bis zum fertigen Tattoo war alles perfekt. Das Studio ist unglaublich sauber.',
-    image: 'https://randomuser.me/api/portraits/men/2.jpg',
-    name: 'Marcus T.',
-    role: 'Blackwork',
-  },
-  {
-    text: 'Mein erstes Tattoo und ich hätte keinen besseren Ort wählen können. So viel Geduld und Sorgfalt. Das Ergebnis übertrifft alle Erwartungen.',
-    image: 'https://randomuser.me/api/portraits/women/3.jpg',
-    name: 'Lena M.',
-    role: 'Fine Line',
-  },
-  {
-    text: 'Ich hatte ein altes Tattoo, das ich hasste. Das Cover Up ist ein Wunder — ich kann gar nicht glauben, was sie daraus gemacht haben.',
-    image: 'https://randomuser.me/api/portraits/men/4.jpg',
-    name: 'Jonas R.',
-    role: 'Cover Up',
-  },
-  {
-    text: 'Das Watercolor-Tattoo ist ein echtes Kunstwerk. Jeder fragt mich danach und ich verweise jeden direkt zu Harlekin Tattoo.',
-    image: 'https://randomuser.me/api/portraits/women/5.jpg',
-    name: 'Anna B.',
-    role: 'Watercolor',
-  },
-  {
-    text: 'Unglaubliche Atmosphäre im Studio. Das Team nimmt sich wirklich Zeit für jedes Detail. Das Ergebnis ist schlicht perfekt.',
-    image: 'https://randomuser.me/api/portraits/men/6.jpg',
-    name: 'Tobias F.',
-    role: 'Traditional',
-  },
-  {
-    text: 'Schon mein drittes Tattoo hier und jedes Mal bin ich aufs Neue begeistert. Die Qualität ist konstant auf höchstem Niveau.',
-    image: 'https://randomuser.me/api/portraits/women/7.jpg',
-    name: 'Mia L.',
-    role: 'Lettering',
-  },
-  {
-    text: 'Endlich ein Studio, das wirklich zuhört. Meine Idee wurde verstanden und in ein absolutes Meisterwerk verwandelt.',
-    image: 'https://randomuser.me/api/portraits/men/8.jpg',
-    name: 'Keanu S.',
-    role: 'Geometric',
-  },
-  {
-    text: 'Beste Erfahrung meines Lebens. Das Team ist talentiert, freundlich und sehr professionell. Absolute Empfehlung!',
-    image: 'https://randomuser.me/api/portraits/women/9.jpg',
-    name: 'Clara W.',
-    role: 'Portrait',
-  },
+const reviews = [
+  { name: 'Sarah K.',   initials: 'SK', role: 'Realistik Portrait',   text: 'Absolut beeindruckend! Das Team hat meine Vision perfekt umgesetzt. Das Realistik-Portrait meiner Katze sieht atemberaubend aus.' },
+  { name: 'Marcus T.',  initials: 'MT', role: 'Blackwork',             text: 'Professioneller geht es nicht. Von der Beratung bis zum fertigen Tattoo war alles perfekt. Das Studio ist unglaublich sauber.' },
+  { name: 'Lena M.',    initials: 'LM', role: 'Fine Line',             text: 'Mein erstes Tattoo und ich hätte keinen besseren Ort wählen können. So viel Geduld und Sorgfalt. Das Ergebnis übertrifft alle Erwartungen.' },
+  { name: 'Jonas R.',   initials: 'JR', role: 'Cover Up',              text: 'Ich hatte ein altes Tattoo, das ich hasste. Das Cover Up ist ein Wunder — ich kann gar nicht glauben, was sie daraus gemacht haben.' },
+  { name: 'Anna B.',    initials: 'AB', role: 'Watercolor',            text: 'Das Watercolor-Tattoo ist ein echtes Kunstwerk. Jeder fragt mich danach und ich verweise jeden direkt zu Harlekin Tattoo.' },
+  { name: 'Tobias F.',  initials: 'TF', role: 'Traditional',           text: 'Unglaubliche Atmosphäre im Studio. Das Team nimmt sich wirklich Zeit für jedes Detail. Das Ergebnis ist schlicht perfekt.' },
 ]
 
-const firstColumn = testimonials.slice(0, 3)
-const secondColumn = testimonials.slice(3, 6)
-const thirdColumn = testimonials.slice(6, 9)
+const reviewsRow2 = [
+  { name: 'Mia L.',     initials: 'ML', role: 'Lettering',             text: 'Schon mein drittes Tattoo hier und jedes Mal bin ich aufs Neue begeistert. Die Qualität ist konstant auf höchstem Niveau.' },
+  { name: 'Keanu S.',   initials: 'KS', role: 'Geometric',             text: 'Endlich ein Studio, das wirklich zuhört. Meine Idee wurde verstanden und in ein absolutes Meisterwerk verwandelt.' },
+  { name: 'Clara W.',   initials: 'CW', role: 'Portrait',              text: 'Beste Erfahrung meines Lebens. Das Team ist talentiert, freundlich und sehr professionell. Absolute Empfehlung!' },
+  { name: 'Felix P.',   initials: 'FP', role: 'Neo Traditional',       text: 'Ich war nervös vor meinem ersten großen Piece, aber das Team hat mich so entspannt — das Ergebnis ist traumhaft.' },
+  { name: 'Nina G.',    initials: 'NG', role: 'Dotwork',               text: 'Die Liebe zum Detail ist unglaublich. Jeder Punkt sitzt perfekt. Dieses Studio lebt für seine Kunst, das spürt man.' },
+  { name: 'Ben K.',     initials: 'BK', role: 'Japanese',              text: 'Von der ersten Skizze bis zum fertigen Tattoo war jeder Schritt ein Erlebnis. Hier wird echte Kunst erschaffen.' },
+]
+
+function ReviewCard({ name, initials, role, text }) {
+  return (
+    <div className="r-card">
+      <div className="r-stars">★★★★★</div>
+      <p className="r-text">{text}</p>
+      <div className="r-person">
+        <div className="r-av">{initials}</div>
+        <div>
+          <strong>{name}</strong>
+          <span>{role}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Reviews() {
   return (
-    <div className="panel flex flex-col justify-center py-20 overflow-hidden" style={{ background: '#080808' }}>
+    <div className="panel" id="bewertungen" style={{ background: '#080808', overflow: 'hidden', padding: '8rem 0' }}>
       {/* BG texture */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -75,37 +47,222 @@ export default function Reviews() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
+      <div className="relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center text-center mb-12"
+          className="rev-head"
         >
-          <p className="text-gold/40 text-xs tracking-[4px] uppercase font-body mb-4">05</p>
-
-          <div className="border border-gold/25 py-1 px-5 mb-6">
-            <span className="text-gold/60 text-xs tracking-[3px] uppercase font-body">Bewertungen</span>
+          <div>
+            <div className="s-eyebrow">
+              <div className="s-eyebrow-line" />
+              <span className="s-label">Kundenstimmen</span>
+            </div>
+            <h2 className="s-title">
+              Was unsere <em>Kunden</em> sagen
+            </h2>
           </div>
-
-          <h2 className="font-display text-4xl md:text-5xl text-cream mt-2">
-            Was unsere Kunden sagen
-          </h2>
-          <div className="w-12 h-px bg-gold mx-auto mt-5" />
-          <p className="text-cream/40 font-body mt-4 text-sm">
-            5.0 · 847 Bewertungen · Berlin
-          </p>
+          <div className="rev-score">
+            <div className="rev-big">5.0</div>
+            <div>
+              <div className="rev-stars-big">★★★★★</div>
+              <div className="rev-count">847 Google-Bewertungen · Berlin</div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Scrolling columns */}
-        <div className="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] max-h-[600px] overflow-hidden">
-          <TestimonialsColumn testimonials={firstColumn} duration={18} />
-          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={22} />
-          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={16} />
+        {/* Scrolling rows */}
+        <div className="reviews-carousel">
+          <div className="rev-track-wrap">
+            <div className="rev-track">
+              {[...reviews, ...reviews].map((r, i) => (
+                <ReviewCard key={i} {...r} />
+              ))}
+            </div>
+          </div>
+          <div className="rev-track-wrap">
+            <div className="rev-track rev-r">
+              {[...reviewsRow2, ...reviewsRow2].map((r, i) => (
+                <ReviewCard key={i} {...r} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+
+      <style>{`
+        .rev-head {
+          padding: 0 5rem;
+          margin-bottom: 4rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          flex-wrap: wrap;
+          gap: 2rem;
+        }
+        .s-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: .75rem;
+          margin-bottom: .75rem;
+        }
+        .s-eyebrow-line {
+          width: 24px;
+          height: 2px;
+          background: #c9a84c;
+          border-radius: 2px;
+        }
+        .s-label {
+          color: #c9a84c;
+          font-size: .72rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          font-family: Inter, sans-serif;
+        }
+        .s-title {
+          font-size: clamp(2.4rem, 4vw, 3.6rem);
+          font-weight: 900;
+          line-height: 1.05;
+          letter-spacing: -1.5px;
+          color: #f5f5f5;
+          font-family: 'Playfair Display', serif;
+        }
+        .s-title em {
+          color: #c9a84c;
+          font-style: normal;
+        }
+        .rev-score {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+        }
+        .rev-big {
+          font-size: 5.5rem;
+          font-weight: 900;
+          line-height: 1;
+          letter-spacing: -3px;
+          color: #f5f5f5;
+          font-family: 'Playfair Display', serif;
+        }
+        .rev-stars-big {
+          color: #c9a84c;
+          font-size: 1.2rem;
+          letter-spacing: 3px;
+        }
+        .rev-count {
+          font-size: .82rem;
+          color: rgba(245,245,245,.4);
+          margin-top: .2rem;
+          font-family: Inter, sans-serif;
+        }
+        .reviews-carousel {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+        .rev-track-wrap {
+          overflow: hidden;
+          -webkit-mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+        }
+        .rev-track {
+          display: flex;
+          gap: 1.4rem;
+          width: max-content;
+          animation: revLeft 38s linear infinite;
+        }
+        .rev-track.rev-r {
+          animation: revRight 44s linear infinite;
+        }
+        .rev-track:hover,
+        .rev-track.rev-r:hover {
+          animation-play-state: paused;
+        }
+        @keyframes revLeft  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+        @keyframes revRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+        .r-card {
+          background: rgba(255,255,255,.04);
+          border: 1px solid rgba(201,168,76,.15);
+          border-radius: 20px;
+          padding: 2rem;
+          width: 320px;
+          flex-shrink: 0;
+          transition: transform .3s, border-color .3s, box-shadow .3s;
+          cursor: default;
+        }
+        .r-card:hover {
+          transform: translateY(-6px) scale(1.02);
+          border-color: rgba(201,168,76,.4);
+          box-shadow: 0 24px 60px rgba(0,0,0,.35);
+        }
+        .r-stars {
+          color: #c9a84c;
+          font-size: .95rem;
+          letter-spacing: 2px;
+          margin-bottom: .9rem;
+        }
+        .r-text {
+          color: rgba(245,245,245,.55);
+          line-height: 1.75;
+          font-size: .88rem;
+          margin-bottom: 1.4rem;
+          font-style: italic;
+          position: relative;
+          padding-left: 1.2rem;
+          font-family: Inter, sans-serif;
+        }
+        .r-text::before {
+          content: '"';
+          position: absolute;
+          left: 0;
+          top: -.2rem;
+          color: #c9a84c;
+          font-size: 2rem;
+          font-style: normal;
+          line-height: 1;
+        }
+        .r-person {
+          display: flex;
+          align-items: center;
+          gap: .75rem;
+        }
+        .r-av {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #c9a84c, #8b6914);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: .8rem;
+          color: #080808;
+          flex-shrink: 0;
+          font-family: Inter, sans-serif;
+        }
+        .r-person strong {
+          display: block;
+          font-size: .88rem;
+          color: #f5f5f5;
+          font-family: Inter, sans-serif;
+        }
+        .r-person span {
+          font-size: .75rem;
+          color: rgba(245,245,245,.4);
+          font-family: Inter, sans-serif;
+        }
+        @media (max-width: 640px) {
+          .rev-head { padding: 0 1.5rem; }
+          .rev-big { font-size: 3.5rem; }
+        }
+        @media (max-width: 1024px) {
+          .rev-head { padding: 0 2.5rem; }
+        }
+      `}</style>
     </div>
   )
 }
