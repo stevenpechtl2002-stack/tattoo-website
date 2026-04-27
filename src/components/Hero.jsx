@@ -65,22 +65,6 @@ export default function Hero() {
       className="panel relative flex items-center justify-center overflow-hidden"
       style={{ background: '#080808' }}
     >
-      {/* Parallax BG image */}
-      <motion.div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=85)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.12,
-          willChange: 'transform',
-        }}
-        animate={{
-          x: mousePos.x * -20,
-          y: mousePos.y * -20,
-        }}
-        transition={{ type: 'spring', stiffness: 50, damping: 20 }}
-      />
 
       {/* Ink radial overlay */}
       <motion.div
