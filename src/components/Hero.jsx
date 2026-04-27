@@ -130,6 +130,25 @@ export default function Hero() {
           Pforzheim · Tattoo & Piercing
         </motion.p>
 
+        {/* Logo */}
+        <motion.div
+          className="flex justify-center mb-4"
+          initial={{ opacity: 0, scale: 0.8, filter: 'blur(12px)' }}
+          animate={
+            phase === 'title' || phase === 'subtitle' || phase === 'done'
+              ? { opacity: 1, scale: 1, filter: 'blur(0px)' }
+              : { opacity: 0, scale: 0.8, filter: 'blur(12px)' }
+          }
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <img
+            src="/harlekin-logo.png"
+            alt="Harlekin Logo"
+            className="w-40 h-40 md:w-52 md:h-52 object-contain"
+            style={{ filter: 'drop-shadow(0 0 30px rgba(201,168,76,0.25))' }}
+          />
+        </motion.div>
+
         {/* Title letters */}
         <div className="flex justify-center gap-1 mb-6 overflow-hidden">
           {TITLE.split('').map((char, i) => (
