@@ -145,7 +145,7 @@ export default function Hero() {
             src="/harlekin-logo.png"
             alt="Harlekin Logo"
             className="w-40 h-40 md:w-52 md:h-52 object-contain"
-            style={{ filter: 'drop-shadow(0 0 30px rgba(201,168,76,0.25))' }}
+            style={{ mixBlendMode: 'screen', filter: 'drop-shadow(0 0 20px rgba(201,168,76,0.3))' }}
           />
         </motion.div>
 
