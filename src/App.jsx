@@ -1,45 +1,31 @@
-import { useState } from 'react'
-import Nav from './components/Nav'
-import Hero from './components/Hero'
-import Services from './components/Services'
-import Gallery from './components/Gallery'
-import About from './components/About'
-import Team from './components/Team'
-import Reviews from './components/Reviews'
-import FAQ from './components/FAQ'
-import Prices from './components/Prices'
-import Products from './components/Products'
-import Booking from './components/Booking'
-import Contact from './components/Contact'
-import Map from './components/Map'
-import Footer from './components/Footer'
-import Modal from './components/Modal'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Layout from './components/Layout'
+import HomePage from './pages/HomePage'
+import LeistungenPage from './pages/LeistungenPage'
+import GalleriePage from './pages/GalleriePage'
+import UeberUnsPage from './pages/UeberUnsPage'
+import TeamPage from './pages/TeamPage'
+import PreisePage from './pages/PreisePage'
+import FAQPage from './pages/FAQPage'
+import KontaktPage from './pages/KontaktPage'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: 'leistungen', element: <LeistungenPage /> },
+      { path: 'galerie', element: <GalleriePage /> },
+      { path: 'ueber-uns', element: <UeberUnsPage /> },
+      { path: 'team', element: <TeamPage /> },
+      { path: 'preise', element: <PreisePage /> },
+      { path: 'faq', element: <FAQPage /> },
+      { path: 'kontakt', element: <KontaktPage /> },
+    ],
+  },
+])
 
 export default function App() {
-  const [modal, setModal] = useState(null)
-
-  return (
-    <>
-      <Nav onOpenModal={setModal} />
-
-      <main>
-        <Hero />
-        <Services />
-        <Gallery />
-        <About />
-        <Team />
-        <Reviews />
-        <Prices />
-        <FAQ />
-        <Products />
-        <Booking />
-        <Contact />
-        <Map />
-      </main>
-
-      <Footer onOpenModal={setModal} />
-
-      {modal && <Modal id={modal} onClose={() => setModal(null)} />}
-    </>
-  )
+  return <RouterProvider router={router} />
 }

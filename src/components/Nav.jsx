@@ -1,22 +1,25 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const LINKS = [
-  { label: 'Home',        id: 'hero' },
-  { label: 'Leistungen',  id: 'services' },
-  { label: 'Galerie',     id: 'gallery' },
-  { label: 'Über Uns',    id: 'about' },
-  { label: 'Team',        id: 'team' },
-  { label: 'Preise',      id: 'prices' },
-  { label: 'FAQ',         id: 'faq' },
-  { label: 'Kontakt',     id: 'contact' },
-  { label: 'AGB',         id: 'agb', modal: true },
-  { label: 'Datenschutz', id: 'datenschutz', modal: true },
-  { label: 'Impressum',   id: 'impressum', modal: true },
+  { label: 'Home',        path: '/' },
+  { label: 'Leistungen',  path: '/leistungen' },
+  { label: 'Galerie',     path: '/galerie' },
+  { label: 'Über Uns',    path: '/ueber-uns' },
+  { label: 'Team',        path: '/team' },
+  { label: 'Preise',      path: '/preise' },
+  { label: 'FAQ',         path: '/faq' },
+  { label: 'Kontakt',     path: '/kontakt' },
+  { label: 'AGB',         modal: 'agb' },
+  { label: 'Datenschutz', modal: 'datenschutz' },
+  { label: 'Impressum',   modal: 'impressum' },
 ]
 
 export default function Nav({ onOpenModal }) {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -29,15 +32,16 @@ export default function Nav({ onOpenModal }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  // close menu on route change
+  useEffect(() => { setOpen(false) }, [location.pathname])
+
   const go = (link) => {
     setOpen(false)
     if (link.modal) {
-      onOpenModal?.(link.id)
+      onOpenModal?.(link.modal)
       return
     }
-    setTimeout(() => {
-      document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' })
-    }, 300)
+    navigate(link.path)
   }
 
   return (
@@ -84,7 +88,6 @@ export default function Nav({ onOpenModal }) {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >
-            {/* Gold texture overlay */}
             <div style={{
               position: 'absolute', inset: 0, opacity: 0.03,
               backgroundImage: 'repeating-linear-gradient(45deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 50%)',
@@ -105,33 +108,37 @@ export default function Nav({ onOpenModal }) {
               </motion.div>
 
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {LINKS.map((link, i) => (
-                  <motion.li
-                    key={link.id}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <button
-                      onClick={() => go(link)}
-                      style={{
-                        background: 'none', border: 'none', cursor: 'pointer',
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: link.modal ? '1rem' : '2.2rem',
-                        fontWeight: link.modal ? 400 : 700,
-                        color: link.modal ? 'rgba(201,168,76,0.4)' : '#f5f5f5',
-                        letterSpacing: link.modal ? '3px' : '-0.5px',
-                        textTransform: link.modal ? 'uppercase' : 'none',
-                        padding: '4px 0',
-                        transition: 'color 0.2s',
-                      }}
-                      onMouseEnter={e => e.currentTarget.style.color = '#c9a84c'}
-                      onMouseLeave={e => e.currentTarget.style.color = link.modal ? 'rgba(201,168,76,0.4)' : '#f5f5f5'}
+                {LINKS.map((link, i) => {
+                  const isModal = !!link.modal
+                  const isActive = !isModal && location.pathname === link.path
+                  return (
+                    <motion.li
+                      key={link.label}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      {link.label}
-                    </button>
-                  </motion.li>
-                ))}
+                      <button
+                        onClick={() => go(link)}
+                        style={{
+                          background: 'none', border: 'none', cursor: 'pointer',
+                          fontFamily: "'Playfair Display', serif",
+                          fontSize: isModal ? '1rem' : '2.2rem',
+                          fontWeight: isModal ? 400 : 700,
+                          color: isActive ? '#c9a84c' : isModal ? 'rgba(201,168,76,0.4)' : '#f5f5f5',
+                          letterSpacing: isModal ? '3px' : '-0.5px',
+                          textTransform: isModal ? 'uppercase' : 'none',
+                          padding: '4px 0',
+                          transition: 'color 0.2s',
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.color = '#c9a84c'}
+                        onMouseLeave={e => e.currentTarget.style.color = isActive ? '#c9a84c' : isModal ? 'rgba(201,168,76,0.4)' : '#f5f5f5'}
+                      >
+                        {link.label}
+                      </button>
+                    </motion.li>
+                  )
+                })}
               </ul>
 
               <motion.div
