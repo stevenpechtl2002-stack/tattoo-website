@@ -64,23 +64,19 @@ export default function Hero() {
     <div
       ref={heroRef}
       className="panel relative flex items-center justify-center overflow-hidden"
-      style={{ background: '#080808' }}
     >
 
       {/* MeshGradient background */}
       <MeshGradient
-        className="absolute inset-0 w-full h-full"
-        colors={['#080808', '#1a1200', '#2a1a00', '#080808']}
-        speed={0.4}
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+        colors={['#080808', '#c9a84c', '#3d2a00', '#080808']}
+        speed={0.3}
       />
 
-      {/* Ink radial overlay — darkens edges */}
+      {/* Subtle dark overlay so text stays readable */}
       <div
         className="absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse at center, transparent 20%, #080808 80%)',
-        }}
+        style={{ background: 'rgba(8,8,8,0.55)' }}
       />
 
       {/* Floating ink particles */}
