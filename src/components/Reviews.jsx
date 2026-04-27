@@ -46,7 +46,7 @@ const REVIEWS = [
     id: 4,
     name: 'Anna B.',
     rating: 5,
-    text: 'Das Watercolor-Tattoo ist ein echtes Kunstwerk. Jeder fragt mich danach und ich verweise jeden direkt zu INK MASTERS. Bestes Studio in ganz Berlin.',
+    text: 'Das Watercolor-Tattoo ist ein echtes Kunstwerk. Jeder fragt mich danach und ich verweise jeden direkt zu Harlekin Tattoo. Bestes Studio in ganz Berlin.',
     style: 'Watercolor',
     delay: 0.25,
     initialX: -90,

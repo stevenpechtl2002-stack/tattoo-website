@@ -95,7 +95,7 @@ export default function Contact() {
 
             {/* Address label */}
             <div className="absolute bottom-4 left-4 glass px-4 py-2">
-              <p className="text-gold text-xs font-body">INK MASTERS</p>
+              <p className="text-gold text-xs font-body">Harlekin Tattoo</p>
               <p className="text-cream/60 text-xs font-body">Kunststraße 7, 10115 Berlin</p>
             </div>
 
@@ -117,9 +117,9 @@ export default function Contact() {
         <div>
           <div className="grid grid-cols-2 gap-4 mb-6">
             <ContactCard icon="📞" title="Telefon" value="030 987654" delay={0} />
-            <ContactCard icon="✉" title="E-Mail" value="info@ink-masters.de" delay={0.1} />
+            <ContactCard icon="✉" title="E-Mail" value="info@harlekin-tattoo.de" delay={0.1} />
             <ContactCard icon="📍" title="Adresse" value="Kunststraße 7, 10115 Berlin" delay={0.2} />
-            <ContactCard icon="◎" title="Instagram" value="@ink.masters.berlin" delay={0.3} />
+            <ContactCard icon="◎" title="Instagram" value="@harlekin.tattoo" delay={0.3} />
           </div>
 
           {/* Opening hours */}
@@ -156,7 +156,7 @@ export default function Contact() {
             </p>
             <div className="flex justify-center gap-4 mt-4">
               <div className="w-8 h-px bg-gold/30" />
-              <span className="text-gold/30 text-xs">INK MASTERS · Berlin 2024</span>
+              <span className="text-gold/30 text-xs">Harlekin Tattoo · Berlin 2024</span>
               <div className="w-8 h-px bg-gold/30" />
             </div>
           </motion.div>

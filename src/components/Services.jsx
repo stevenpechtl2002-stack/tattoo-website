@@ -180,11 +180,11 @@ export default function Services() {
 
             {/* Center circle */}
             <circle cx="300" cy="300" r="90" fill="#080808" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-            <text x="300" y="295" textAnchor="middle" fill="#c9a84c" fontSize="13" fontFamily="Playfair Display, serif" fontStyle="italic">
-              INK
+            <text x="300" y="295" textAnchor="middle" fill="#c9a84c" fontSize="11" fontFamily="Playfair Display, serif" fontStyle="italic">
+              Harlekin
             </text>
             <text x="300" y="314" textAnchor="middle" fill="rgba(245,245,245,0.4)" fontSize="9" fontFamily="Inter, sans-serif" letterSpacing="3">
-              MASTERS
+              TATTOO
             </text>
           </svg>
         </div>

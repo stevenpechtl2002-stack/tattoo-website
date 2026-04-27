@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const TITLE = 'INK MASTERS'
+const TITLE = 'HARLEKIN'
 const SUBTITLE = 'Deine Haut. Unsere Kunst.'
 
 const InkParticle = ({ style }) => (
