@@ -116,14 +116,14 @@ export default function Gallery() {
       <button
         onClick={prev}
         className="absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 border border-gold/30 text-gold/70 hover:border-gold hover:text-gold transition-all flex items-center justify-center"
-        style={{ cursor: 'none' }}
+        
       >
         ←
       </button>
       <button
         onClick={next}
         className="absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 border border-gold/30 text-gold/70 hover:border-gold hover:text-gold transition-all flex items-center justify-center"
-        style={{ cursor: 'none' }}
+        
       >
         →
       </button>
@@ -134,7 +134,7 @@ export default function Gallery() {
           <button
             key={i}
             onClick={() => go(i)}
-            style={{ cursor: 'none' }}
+            
             className={`transition-all duration-300 rounded-full ${
               i === index
                 ? 'w-6 h-2 bg-gold'

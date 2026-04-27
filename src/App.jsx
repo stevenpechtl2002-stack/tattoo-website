@@ -1,4 +1,3 @@
-import InkCursor from './components/InkCursor'
 import Hero from './components/Hero'
 import Services from './components/Services'
 import Gallery from './components/Gallery'
@@ -10,8 +9,6 @@ import Contact from './components/Contact'
 export default function App() {
   return (
     <>
-      <InkCursor />
-
       <main>
         <Hero />
         <Services />

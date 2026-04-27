@@ -144,7 +144,7 @@ export default function Booking() {
             <button
               onClick={() => setStep(s => s - 1)}
               className="text-cream/30 text-xs hover:text-cream/60 transition-colors"
-              style={{ cursor: 'none' }}
+              
             >
               ← Zurück
             </button>
@@ -171,7 +171,7 @@ export default function Booking() {
                   <button
                     key={choice}
                     onClick={() => { set(current.field, choice); setTimeout(advance, 200) }}
-                    style={{ cursor: 'none' }}
+                    
                     className={`px-6 py-3 border text-sm tracking-[2px] uppercase font-body transition-all duration-300 ${
                       values[current.field] === choice
                         ? 'border-gold bg-gold/10 text-gold'
@@ -189,7 +189,7 @@ export default function Booking() {
                 onChange={(e) => set(current.field, e.target.value)}
                 placeholder={current.placeholder}
                 className="w-full bg-transparent border-b border-cream/20 focus:border-gold outline-none text-cream font-body text-lg py-3 resize-none transition-colors placeholder-cream/20"
-                style={{ cursor: 'none' }}
+                
                 onKeyDown={(e) => e.key === 'Tab' && canAdvance && (e.preventDefault(), advance())}
               />
             ) : (
@@ -200,7 +200,7 @@ export default function Booking() {
                 placeholder={current?.placeholder}
                 autoFocus
                 className="w-full bg-transparent border-b border-cream/20 focus:border-gold outline-none text-cream font-body text-2xl py-4 transition-colors placeholder-cream/20"
-                style={{ cursor: 'none' }}
+                
                 onKeyDown={(e) => e.key === 'Enter' && canAdvance && advance()}
               />
             )}
@@ -215,7 +215,7 @@ export default function Booking() {
                   onClick={advance}
                   disabled={!canAdvance}
                   className={`btn-gold ${!canAdvance ? 'opacity-30' : ''}`}
-                  style={{ cursor: 'none' }}
+                  
                 >
                   <span>{isLast ? 'Absenden' : 'Weiter →'}</span>
                 </button>

@@ -24,7 +24,7 @@ function ContactCard({ icon, title, value, delay }) {
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
       whileHover={{ y: -4 }}
-      style={{ cursor: 'none' }}
+      
     >
       <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-gold/30" />
       <div className="text-gold text-xl mb-3">{icon}</div>
