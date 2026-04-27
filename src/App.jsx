@@ -1,4 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+if (typeof window !== 'undefined') {
+  window.history.scrollRestoration = 'manual'
+}
 import Layout from './components/Layout'
 import HomePage from './pages/HomePage'
 import LeistungenPage from './pages/LeistungenPage'
