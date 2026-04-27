@@ -128,7 +128,7 @@ export default function Hero() {
           <img
             src="/harlekin-logo.png"
             alt="Harlekin Logo"
-            className="w-40 h-40 md:w-52 md:h-52 object-contain"
+            className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-contain"
             style={{ mixBlendMode: 'screen', filter: 'drop-shadow(0 0 20px rgba(201,168,76,0.3))' }}
           />
         </motion.div>
