@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "motion/react";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 export type Testimonial = {
   text: string;
@@ -29,19 +30,12 @@ export const TestimonialsColumn = (props: {
         {[...new Array(2).fill(0).map((_, index) => (
           <React.Fragment key={index}>
             {props.testimonials.map(({ text, image, name, role }, i) => (
-              <div
+              <GlowCard
                 key={i}
-                className="p-6 rounded-none border border-gold/15 max-w-xs w-full relative"
-                style={{
-                  background: 'rgba(26,26,46,0.4)',
-                  backdropFilter: 'blur(12px)',
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
-                }}
+                glowColor="gold"
+                customSize
+                className="w-full flex flex-col justify-between p-6 gap-0"
               >
-                {/* Gold corner accent */}
-                <div className="absolute top-0 left-0 w-5 h-5 border-t border-l border-gold/40" />
-                <div className="absolute bottom-0 right-0 w-5 h-5 border-b border-r border-gold/40" />
-
                 {/* Stars */}
                 <div className="flex gap-0.5 mb-4">
                   {[...Array(5)].map((_, s) => (
@@ -49,7 +43,7 @@ export const TestimonialsColumn = (props: {
                   ))}
                 </div>
 
-                <p className="text-cream/75 text-sm leading-relaxed font-body italic">
+                <p className="text-cream/75 text-sm leading-relaxed font-body italic flex-1">
                   "{text}"
                 </p>
 
@@ -66,7 +60,7 @@ export const TestimonialsColumn = (props: {
                     <span className="text-gold/50 text-xs tracking-[1px] leading-5 font-body">{role}</span>
                   </div>
                 </div>
-              </div>
+              </GlowCard>
             ))}
           </React.Fragment>
         ))]}
