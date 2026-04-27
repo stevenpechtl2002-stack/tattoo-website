@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { MeshGradient } from '@paper-design/shaders-react'
 
 const TITLE = 'HARLEKIN'
 const SUBTITLE = "We don't follow standards... WE SET THEM!"
@@ -66,11 +67,19 @@ export default function Hero() {
       style={{ background: '#080808' }}
     >
 
-      {/* Ink radial overlay */}
-      <motion.div
+      {/* MeshGradient background */}
+      <MeshGradient
+        className="absolute inset-0 w-full h-full"
+        colors={['#080808', '#1a1200', '#2a1a00', '#080808']}
+        speed={0.4}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+      />
+
+      {/* Ink radial overlay — darkens edges */}
+      <div
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 0%, #080808 70%)',
+          background: 'radial-gradient(ellipse at center, transparent 20%, #080808 80%)',
         }}
       />
 
