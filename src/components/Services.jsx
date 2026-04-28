@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { GlowCard } from '@/components/ui/spotlight-card'
 
 const ICONS = {
@@ -111,12 +110,8 @@ const SERVICES = [
 ]
 
 export default function Services() {
-  const [hovered, setHovered] = useState(null)
-
   return (
     <div className="panel flex flex-col justify-center py-20" style={{ background: '#080808' }}>
-      {/* BG grid */} 
-
       <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
         {/* Header */}
         <div className="mb-14">
@@ -124,48 +119,6 @@ export default function Services() {
           <h2 className="font-display text-5xl text-cream mt-2">Leistungen</h2>
           <div className="w-12 h-px bg-gold mt-4" />
         </div>
-
-        {/* Photo strip */}
-        <motion.div
-          className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {[
-            '/bilder/IMG_2605_2.jpg',
-            '/bilder/IMG_2596_2.jpg',
-            '/bilder/IMG_2591_2.jpg',
-            '/bilder/IMG_2604_2.jpg',
-            '/bilder/IMG_2598_2.jpg',
-            '/bilder/IMG_2603.jpg',
-          ].map((src, i) => (
-            <div
-              key={i}
-              style={{
-                aspectRatio: '3/4',
-                overflow: 'hidden',
-                borderRadius: 4,
-                border: '1px solid rgba(201,168,76,0.1)',
-              }}
-            >
-              <img
-                src={src}
-                alt=""
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  filter: 'grayscale(30%)',
-                  transition: 'transform 0.5s ease, filter 0.5s ease',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.07)'; e.currentTarget.style.filter = 'grayscale(0%)' }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'grayscale(30%)' }}
-              />
-            </div>
-          ))}
-        </motion.div>
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -176,8 +129,6 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              onMouseEnter={() => setHovered(service.id)}
-              onMouseLeave={() => setHovered(null)}
             >
               <GlowCard
                 glowColor="gold"
@@ -186,13 +137,7 @@ export default function Services() {
               >
                 {/* Top: icon + tag */}
                 <div className="flex items-start justify-between">
-                  <motion.div
-                    className="text-gold"
-                    animate={{ scale: hovered === service.id ? 1.15 : 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {service.icon}
-                  </motion.div>
+                  <div className="text-gold">{service.icon}</div>
                   <span className="text-gold/40 text-[10px] tracking-[3px] font-body border border-gold/20 px-2 py-0.5">
                     {service.tag}
                   </span>
@@ -204,24 +149,9 @@ export default function Services() {
                   <h3 className="font-display text-xl text-cream mb-2 leading-snug">
                     {service.name}
                   </h3>
-                  <AnimatePresence>
-                    {hovered === service.id && (
-                      <motion.p
-                        className="text-cream/60 text-sm font-body leading-relaxed"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {service.desc}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                  {hovered !== service.id && (
-                    <p className="text-cream/30 text-xs font-body">
-                      Hover für Details →
-                    </p>
-                  )}
+                  <p className="text-cream/60 text-sm font-body leading-relaxed">
+                    {service.desc}
+                  </p>
                 </div>
               </GlowCard>
             </motion.div>
