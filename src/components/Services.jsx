@@ -125,6 +125,48 @@ export default function Services() {
           <div className="w-12 h-px bg-gold mt-4" />
         </div>
 
+        {/* Photo strip */}
+        <motion.div
+          className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-14"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {[
+            '/bilder/IMG_2605_2.jpg',
+            '/bilder/IMG_2596_2.jpg',
+            '/bilder/IMG_2591_2.jpg',
+            '/bilder/IMG_2604_2.jpg',
+            '/bilder/IMG_2598_2.jpg',
+            '/bilder/IMG_2603.jpg',
+          ].map((src, i) => (
+            <div
+              key={i}
+              style={{
+                aspectRatio: '3/4',
+                overflow: 'hidden',
+                borderRadius: 4,
+                border: '1px solid rgba(201,168,76,0.1)',
+              }}
+            >
+              <img
+                src={src}
+                alt=""
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  filter: 'grayscale(30%)',
+                  transition: 'transform 0.5s ease, filter 0.5s ease',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.07)'; e.currentTarget.style.filter = 'grayscale(0%)' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'grayscale(30%)' }}
+              />
+            </div>
+          ))}
+        </motion.div>
+
         {/* Cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, i) => (
