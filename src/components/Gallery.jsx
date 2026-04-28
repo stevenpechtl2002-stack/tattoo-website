@@ -1,18 +1,24 @@
 import { motion } from 'framer-motion'
 
 const images = [
-  { url: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=800&q=80', label: 'Realistik Portrait' },
-  { url: 'https://images.unsplash.com/photo-1590246814883-57c511e84693?w=800&q=80', label: 'Blackwork' },
-  { url: 'https://images.unsplash.com/photo-1616493478363-c3dd6c9d4ee2?w=800&q=80', label: 'Fine Line' },
-  { url: 'https://images.unsplash.com/photo-1628955987810-45434c5b4f95?w=800&q=80', label: 'Traditional' },
-  { url: 'https://images.unsplash.com/photo-1503097843296-e290b4f16f64?w=800&q=80', label: 'Geometric' },
-  { url: 'https://images.unsplash.com/photo-1555685812-4b8f59697ef3?w=800&q=80', label: 'Watercolor' },
-  { url: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=800&q=80', label: 'Japanese' },
-  { url: 'https://images.unsplash.com/photo-1561414927-6d86591d0c4f?w=800&q=80', label: 'Cover Up' },
-  { url: 'https://images.unsplash.com/photo-1477747219299-60f02e818890?w=800&q=80', label: 'Dotwork' },
-  { url: 'https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=800&q=80', label: 'Neo Traditional' },
-  { url: 'https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=800&q=80', label: 'Lettering' },
-  { url: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80', label: 'Mandala' },
+  { url: '/bilder/IMG_2591%202.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2592.jpg', label: 'Blackwork' },
+  { url: '/bilder/IMG_2593%202.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2594%202.jpg', label: 'Tribal' },
+  { url: '/bilder/IMG_2595%202.jpg', label: 'Fine Line' },
+  { url: '/bilder/IMG_2596%202.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2597%202.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2598%202.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2599%202.jpg', label: 'Blackwork' },
+  { url: '/bilder/IMG_2599.jpg', label: 'Blackwork' },
+  { url: '/bilder/IMG_2600%202.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2601%202.jpg', label: 'Lettering' },
+  { url: '/bilder/IMG_2602%202.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2603.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2604%202.jpg', label: 'Maori' },
+  { url: '/bilder/IMG_2605%202.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2606%202.jpg', label: 'Black & Grey' },
+  { url: '/bilder/IMG_2606.jpg', label: 'Black & Grey' },
 ]
 
 export default function Gallery() {
@@ -21,19 +27,6 @@ export default function Gallery() {
       className="panel"
       style={{ background: '#080808', overflow: 'hidden', padding: '8rem 0', position: 'relative' }}
     >
-      {/* BG texture */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: 0.03,
-          backgroundImage:
-            'repeating-linear-gradient(45deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 50%)',
-          backgroundSize: '20px 20px',
-          pointerEvents: 'none',
-        }}
-      />
-
       <div style={{ position: 'relative', zIndex: 10 }}>
         {/* Header */}
         <motion.div

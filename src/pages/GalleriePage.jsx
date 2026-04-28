@@ -1,46 +1,28 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const STYLE_FILTERS = ['Alle', 'Black & Grey', 'Maori', 'Watercolor', 'Blackwork', 'Traditional', 'Japanese', 'Cover Up']
-const BODY_FILTERS = ['Alle', 'Arm', 'Rücken', 'Bein', 'Brust', 'Hals', 'Hand']
+const STYLE_FILTERS = ['Alle', 'Black & Grey', 'Blackwork', 'Maori']
+const BODY_FILTERS = ['Alle', 'Arm', 'Rücken', 'Bein', 'Hand']
 
 const IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=600&q=80', style: 'Black & Grey', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=600&q=80', style: 'Black & Grey', body: 'Brust' },
-  { src: 'https://images.unsplash.com/photo-1595167151695-dfb675cbf3f5?w=600&q=80', style: 'Watercolor', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1567327613485-fbc7bf196198?w=600&q=80', style: 'Blackwork', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1605367520975-b4d078bc3e23?w=600&q=80', style: 'Traditional', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1590246815117-9e5d00fa3b3e?w=600&q=80', style: 'Black & Grey', body: 'Rücken' },
-  { src: 'https://images.unsplash.com/photo-1603189343302-e603f7add05a?w=600&q=80', style: 'Watercolor', body: 'Hand' },
-  { src: 'https://images.unsplash.com/photo-1608138404239-d2f6bf1a4665?w=600&q=80', style: 'Blackwork', body: 'Brust' },
-  { src: 'https://images.unsplash.com/photo-1564859228273-274232fdb516?w=600&q=80', style: 'Traditional', body: 'Brust' },
-  { src: 'https://images.unsplash.com/photo-1604881990409-b9f246db39da?w=600&q=80', style: 'Black & Grey', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1570294646112-47b0a8a41e08?w=600&q=80', style: 'Watercolor', body: 'Rücken' },
-  { src: 'https://images.unsplash.com/photo-1598369114806-733c1b8b65e1?w=600&q=80', style: 'Blackwork', body: 'Rücken' },
-  { src: 'https://images.unsplash.com/photo-1576073719676-aa95325b19ab?w=600&q=80', style: 'Traditional', body: 'Bein' },
-  { src: 'https://images.unsplash.com/photo-1561948955-570b270e7c36?w=600&q=80', style: 'Black & Grey', body: 'Bein' },
-  { src: 'https://images.unsplash.com/photo-1616763355548-1b606f439f86?w=600&q=80', style: 'Watercolor', body: 'Rücken' },
-  { src: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=600&q=80', style: 'Blackwork', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1562184552-997c461abbe1?w=600&q=80', style: 'Traditional', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600&q=80', style: 'Japanese', body: 'Rücken' },
-  { src: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80', style: 'Watercolor', body: 'Bein' },
-  { src: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=600&q=80', style: 'Blackwork', body: 'Rücken' },
-  { src: 'https://images.unsplash.com/photo-1559558406-0b80b8e94b8b?w=600&q=80', style: 'Black & Grey', body: 'Bein' },
-  { src: 'https://images.unsplash.com/photo-1543857182-f71e7c0af56c?w=600&q=80', style: 'Traditional', body: 'Hand' },
-  { src: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=600&q=80', style: 'Watercolor', body: 'Brust' },
-  { src: 'https://images.unsplash.com/photo-1587502537147-b4f7f25d1e1a?w=600&q=80', style: 'Japanese', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1608138404239-d2f6bf1a4665?w=600&q=80', style: 'Maori', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1567327613485-fbc7bf196198?w=600&q=80', style: 'Maori', body: 'Bein' },
-  { src: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=600&q=80', style: 'Cover Up', body: 'Brust' },
-  { src: 'https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=600&q=80', style: 'Cover Up', body: 'Arm' },
-  { src: 'https://images.unsplash.com/photo-1604881990409-b9f246db39da?w=600&q=80', style: 'Japanese', body: 'Bein' },
-  { src: 'https://images.unsplash.com/photo-1590246815117-9e5d00fa3b3e?w=600&q=80', style: 'Maori', body: 'Rücken' },
-  { src: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80', style: 'Japanese', body: 'Brust' },
-  { src: 'https://images.unsplash.com/photo-1603189343302-e603f7add05a?w=600&q=80', style: 'Cover Up', body: 'Rücken' },
-  { src: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=600&q=80', style: 'Maori', body: 'Hals' },
-  { src: 'https://images.unsplash.com/photo-1543857182-f71e7c0af56c?w=600&q=80', style: 'Japanese', body: 'Hand' },
-  { src: 'https://images.unsplash.com/photo-1561948955-570b270e7c36?w=600&q=80', style: 'Cover Up', body: 'Bein' },
-  { src: 'https://images.unsplash.com/photo-1587502537147-b4f7f25d1e1a?w=600&q=80', style: 'Black & Grey', body: 'Hals' },
+  { src: '/bilder/IMG_2591%202.jpg', style: 'Black & Grey', body: 'Rücken' },
+  { src: '/bilder/IMG_2592.jpg', style: 'Blackwork', body: 'Bein' },
+  { src: '/bilder/IMG_2593%202.jpg', style: 'Black & Grey', body: 'Arm' },
+  { src: '/bilder/IMG_2594%202.jpg', style: 'Maori', body: 'Rücken' },
+  { src: '/bilder/IMG_2595%202.jpg', style: 'Black & Grey', body: 'Rücken' },
+  { src: '/bilder/IMG_2596%202.jpg', style: 'Black & Grey', body: 'Arm' },
+  { src: '/bilder/IMG_2597%202.jpg', style: 'Black & Grey', body: 'Hand' },
+  { src: '/bilder/IMG_2598%202.jpg', style: 'Black & Grey', body: 'Arm' },
+  { src: '/bilder/IMG_2599%202.jpg', style: 'Blackwork', body: 'Arm' },
+  { src: '/bilder/IMG_2599.jpg', style: 'Blackwork', body: 'Arm' },
+  { src: '/bilder/IMG_2600%202.jpg', style: 'Black & Grey', body: 'Arm' },
+  { src: '/bilder/IMG_2601%202.jpg', style: 'Blackwork', body: 'Bein' },
+  { src: '/bilder/IMG_2602%202.jpg', style: 'Black & Grey', body: 'Bein' },
+  { src: '/bilder/IMG_2603.jpg', style: 'Black & Grey', body: 'Arm' },
+  { src: '/bilder/IMG_2604%202.jpg', style: 'Maori', body: 'Arm' },
+  { src: '/bilder/IMG_2605%202.jpg', style: 'Black & Grey', body: 'Arm' },
+  { src: '/bilder/IMG_2606%202.jpg', style: 'Black & Grey', body: 'Arm' },
+  { src: '/bilder/IMG_2606.jpg', style: 'Black & Grey', body: 'Arm' },
 ]
 
 function FilterBtn({ label, active, onClick }) {
