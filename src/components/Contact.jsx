@@ -28,14 +28,7 @@ export default function Contact() {
   }
 
   return (
-    <div id="contact" className="panel flex items-center overflow-hidden" style={{ background: '#0a0a0a' }}>
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'repeating-linear-gradient(45deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 50%)',
-          backgroundSize: '20px 20px',
-        }}
-      />
+    <div id="contact" className="panel flex items-center overflow-hidden" style={{ background: '#080808' }}> 
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start py-20">
 

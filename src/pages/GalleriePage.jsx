@@ -139,14 +139,7 @@ export default function GalleriePage() {
   )
 
   return (
-    <main style={{ minHeight: '100vh', background: '#080808' }}>
-      <div
-        className="fixed inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: 'repeating-linear-gradient(45deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 50%)',
-          backgroundSize: '20px 20px',
-        }}
-      />
+    <main style={{ minHeight: '100vh', background: '#080808' }}> 
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 py-24">
         {/* Header */}

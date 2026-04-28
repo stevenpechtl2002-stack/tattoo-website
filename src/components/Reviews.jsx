@@ -37,15 +37,7 @@ function ReviewCard({ name, initials, role, text }) {
 export default function Reviews() {
   return (
     <div className="panel" id="bewertungen" style={{ background: '#080808', overflow: 'hidden', padding: '8rem 0' }}>
-      {/* BG texture */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(45deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 50%)',
-          backgroundSize: '20px 20px',
-        }}
-      />
+      {/* BG texture */} 
 
       <div className="relative z-10">
         {/* Header */}

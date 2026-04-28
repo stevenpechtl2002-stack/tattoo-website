@@ -39,14 +39,7 @@ const PIERCING = [
 
 export default function Prices() {
   return (
-    <div id="prices" className="panel flex flex-col justify-center py-20" style={{ background: '#080808' }}>
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(201,168,76,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.5) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
+    <div id="prices" className="panel flex flex-col justify-center py-20" style={{ background: '#080808' }}> 
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
         <motion.div

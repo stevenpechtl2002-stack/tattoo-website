@@ -81,14 +81,7 @@ export default function Booking() {
 
   return (
     <div className="panel flex items-center justify-center overflow-hidden" style={{ background: '#080808' }}>
-      {/* BG texture */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'repeating-linear-gradient(45deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 50%)',
-          backgroundSize: '20px 20px',
-        }}
-      />
+      {/* BG texture */} 
 
       {/* Ink splash animation */}
       <AnimatePresence>
