@@ -80,7 +80,7 @@ export default function Booking() {
   const canAdvance = values[current?.field] && String(values[current?.field]).length > 0
 
   return (
-    <div className="panel flex items-center justify-center overflow-hidden" style={{ background: '#080808' }}>
+    <div id="booking" className="panel flex items-center justify-center overflow-hidden" style={{ background: '#080808' }}>
       {/* BG texture */} 
 
       {/* Ink splash animation */}

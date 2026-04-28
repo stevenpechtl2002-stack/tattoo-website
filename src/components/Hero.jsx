@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const TITLE = 'HARLEKIN'
@@ -26,6 +27,7 @@ const InkParticle = ({ style }) => (
 )
 
 export default function Hero() {
+  const navigate = useNavigate()
   const [phase, setPhase] = useState('black') // black → inkReveal → title → subtitle → done
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const heroRef = useRef(null)
@@ -172,7 +174,7 @@ export default function Hero() {
           <button className="btn-gold" onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}>
             <span>Termin Buchen</span>
           </button>
-          <button className="btn-gold" style={{ background: 'transparent' }} onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}>
+          <button className="btn-gold" style={{ background: 'transparent' }} onClick={() => navigate('/galerie')}>
             <span>Galerie ansehen</span>
           </button>
         </motion.div>

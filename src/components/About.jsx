@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const STATS = [
@@ -26,6 +27,7 @@ function StatCounter({ value, suffix, label }) {
 }
 
 export default function About() {
+  const navigate = useNavigate()
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
 
@@ -136,7 +138,7 @@ export default function About() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            onClick={() => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => navigate('/team')}
           >
             <span>Unser Team</span>
           </motion.button>
